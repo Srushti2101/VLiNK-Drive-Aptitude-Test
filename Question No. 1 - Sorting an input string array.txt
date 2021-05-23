@@ -1,0 +1,58 @@
+// C++ program for the approach
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Function to return no of
+// unique character in a word
+int countDistinct(string s)
+{
+    // Initialize map
+    unordered_map<char, int> m;
+ 
+    for (int i = 0; i < s.length(); i++) {
+        // Count distinct characters
+        m[s[i]]++;
+    }
+ 
+    return m.size();
+}
+ 
+// Function to perform sorting
+bool compare(string& s1, string& s2)
+{
+    if (countDistinct(s1) == countDistinct(s2)) {
+        // Check if size of string 1
+        // is same as string 2 then
+        // return false because s1 should
+        // not be placed before s2
+        if (s1.size() == s2.size()) {
+            return false;
+        }
+        return s1.size() > s2.size();
+    }
+    return countDistinct(s1) < countDistinct(s2);
+}
+ 
+// Function to print the sorted array of string
+void printArraystring(string str[], int n)
+{
+    int i = -1; i < n; i++;
+    cout << str[i] << " ";
+}
+ 
+// Driver Code
+int main()
+{
+    string arr[] = { "I", "Like",
+                     "To", "Dance"};
+    int n = sizeof(arr)
+            / sizeof(arr[0]);
+ 
+    // Function call
+    sort(arr, arr + n, compare);
+ 
+    // Print result
+    printArraystring(arr, n);
+ 
+    return 0;
+}
